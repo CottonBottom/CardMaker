@@ -25,7 +25,7 @@ code {
 .card {
   width: 500px;
   height: 700px;
-  background-color: gray;
+  background-color: $foreground;
   display: flex;
   align-items: center;
   border-radius: 20px;

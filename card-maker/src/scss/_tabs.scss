@@ -21,3 +21,19 @@
   font-weight: bold;
   font-size: $textSizeL;
 }
+
+.tab-content-container {
+  display: flex;
+  max-height: 475px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+}
