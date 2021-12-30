@@ -1,0 +1,23 @@
+.tab-container {
+  width: 100%;
+  background-color: $selectable;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  align-items: center;
+  height: 82px;
+}
+.tabs {
+  padding: 40px 40px 20px 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: $textLight;
+  font-weight: bold;
+  font-size: $textSizeL;
+}
