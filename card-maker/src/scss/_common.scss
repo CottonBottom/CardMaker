@@ -10,6 +10,10 @@ body {
   color: $textLight;
 }
 
+textarea {
+  font-family: "Murecho", sans-serif;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -35,6 +39,16 @@ code {
 
 .card--settings {
   margin-left: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  width: 100%;
+}
+.buttons {
+  display: flex;
+  width: 100%;
+  padding: 0px 20px;
 }
 
 // Mobile

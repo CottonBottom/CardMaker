@@ -34,159 +34,39 @@ const Settings: React.FC<Props> = (props: Props) => {
             <label htmlFor="inputselectexample" className="input-label">
               Select Changable Label
             </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
+            <div className="input-row__select">
+              <select
+                className="input input--select"
+                name=""
+                id="inputselectexample"
+              >
+                <option value="0">Some Option 0</option>
+                <option value="1">Some Option 1</option>
+                <option value="2">Some Option 2</option>
+              </select>
+              <button className="button button--icon">
+                <span className="material-icons">file_upload</span>
+              </button>
+              <button className="button button--icon">
+                <span className="material-icons">delete</span>
+              </button>
+              <button className="button button--icon">
+                <span className="material-icons">remove_circle</span>
+              </button>
+            </div>
           </div>
           <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
-          </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <select
-              className="input input--select"
-              name=""
-              id="inputselectexample"
-            >
-              <option value="0">Some Option 0</option>
-              <option value="1">Some Option 1</option>
-              <option value="2">Some Option 2</option>
-            </select>
+            <button className="button button--icon">
+              <span className="material-icons">add_circle</span>
+            </button>
           </div>
         </div>
       </div>
-      <button className="button button--full-width">Generate</button>
+      <div className="buttons-container">
+        <div className="buttons">
+          <button className="button button--full-width">Generate</button>
+        </div>
+      </div>
     </div>
   );
 };
