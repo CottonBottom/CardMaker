@@ -2,31 +2,63 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 100%;
+  width: 240px;
+  height: 336px;
+  position: relative;
 }
 
 .character-card {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 336px;
-  width: 240px;
   background: black;
   border-radius: 10px;
   font-size: 30px;
   padding: 5px;
-  position: relative;
-  //   scale: 2.09;
+  scale: 2.09;
+
+  //Disable text selection
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 .character-card__top {
-  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
   width: 40px;
   background: black;
   position: absolute;
   z-index: 1;
+  top: 0;
   right: 0;
+  border-radius: 0px 10px 0px 5px;
+
+  .material-icons {
+    color: white;
+    font-size: 14px;
+  }
+}
+
+.character-card__cost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 10px;
+  color: black;
+  background: white;
+  border-radius: 50%;
+  margin-right: 3px;
+  span {
+    margin-bottom: 1px;
+  }
 }
 
 .character-card__image-container {
@@ -48,7 +80,7 @@
 .character-card__legend {
   background: rgba(255, 255, 255, 0.5);
   color: black;
-  height: 42px;
+  height: 32px;
   padding: 5px;
   font-size: 9px;
   line-height: 10.5px;
@@ -60,8 +92,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: white;
-  line-height: 1;
 }
 
 .character-card__skills {
@@ -69,7 +99,8 @@
   display: flex;
   align-items: center;
   font-size: 7px;
-  margin-right: 10px;
+  color: white;
+  font-weight: bold;
 
   span:not(:last-child) {
     margin-right: 7px;
@@ -77,7 +108,9 @@
 }
 
 .character-card__stats {
+  color: white;
   font-size: 18px;
+  font-weight: bold;
 }
 
 @media (max-width: 500px) {
