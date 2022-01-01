@@ -1,4 +1,5 @@
 import React from "react";
+import PartsSelect from "./PartsSelect";
 
 type Props = {};
 
@@ -30,31 +31,9 @@ const Settings: React.FC<Props> = (props: Props) => {
               rows={3}
             />
           </div>
-          <div className="input-row">
-            <label htmlFor="inputselectexample" className="input-label">
-              Select Changable Label
-            </label>
-            <div className="input-row__select">
-              <select
-                className="input input--select"
-                name=""
-                id="inputselectexample"
-              >
-                <option value="0">Some Option 0</option>
-                <option value="1">Some Option 1</option>
-                <option value="2">Some Option 2</option>
-              </select>
-              <button className="button button--icon">
-                <span className="material-icons">file_upload</span>
-              </button>
-              <button className="button button--icon">
-                <span className="material-icons">delete</span>
-              </button>
-              <button className="button button--icon">
-                <span className="material-icons">remove_circle</span>
-              </button>
-            </div>
-          </div>
+          <PartsSelect />
+          <PartsSelect />
+          <PartsSelect />
           <div className="input-row">
             <button className="button button--icon">
               <span className="material-icons">add_circle</span>

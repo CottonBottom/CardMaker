@@ -22,6 +22,10 @@
   background-color: $textLight;
 }
 
+.input:focus {
+  outline: $selectable solid 3px;
+}
+
 .input-row__select {
   display: flex;
   align-items: center;
@@ -36,4 +40,12 @@
   height: auto;
   resize: none;
   padding: 8px;
+}
+
+.input__color-picker {
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid $selectable;
+  background-color: pink;
+  margin-top: 8px;
 }

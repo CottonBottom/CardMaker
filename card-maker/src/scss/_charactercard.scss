@@ -1,0 +1,87 @@
+.character-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.character-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 336px;
+  width: 240px;
+  background: black;
+  border-radius: 10px;
+  font-size: 30px;
+  padding: 5px;
+  position: relative;
+  //   scale: 2.09;
+}
+
+.character-card__top {
+  height: 20px;
+  width: 40px;
+  background: black;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+}
+
+.character-card__image-container {
+  background: silver;
+  border-radius: 5px 5px 0px 0px;
+  width: 100%;
+  height: 264px;
+  position: relative;
+}
+
+.character-card__name {
+  color: black;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  font-size: 14px;
+}
+
+.character-card__legend {
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
+  height: 42px;
+  padding: 5px;
+  font-size: 9px;
+  line-height: 10.5px;
+  margin-bottom: 2px;
+}
+
+.character-card__abilities {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  line-height: 1;
+}
+
+.character-card__skills {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 7px;
+  margin-right: 10px;
+
+  span:not(:last-child) {
+    margin-right: 7px;
+  }
+}
+
+.character-card__stats {
+  font-size: 18px;
+}
+
+@media (max-width: 500px) {
+  .character-card {
+    scale: 1.82;
+  }
+}
