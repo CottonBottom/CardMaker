@@ -1,17 +1,27 @@
 import React, { useState } from "react";
-import Parts from "./Parts";
+import Parts, { Category } from "./Parts";
 
 type Props = {};
+
+const defaultCategories = [
+  {
+    id: "1",
+    options: ["option1", "option2", "option3", "option4", "option5"],
+    selected: "option1",
+    color: "Cyan",
+  },
+];
 
 const Settings: React.FC<Props> = (props: Props) => {
   const [activeTab, setActiveTab] = useState<"parts" | "data" | "rules">(
     "parts"
   );
+  const [categories, setCategories] = useState<Category[]>(defaultCategories);
 
   const tabContent = (tab: "parts" | "data" | "rules") => {
     switch (tab) {
       case "parts":
-        return <Parts />;
+        return <Parts categories={categories} setCategories={setCategories} />;
       case "data":
         return (
           <div className="tab-content">

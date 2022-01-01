@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import PartsSelect from "./PartsSelect";
 
-type Props = {};
+type Props = {
+  categories: Category[];
+  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+};
 
 export type Category = {
   id: string;
@@ -10,18 +13,7 @@ export type Category = {
   color: string;
 };
 
-const defaultCategories = [
-  {
-    id: "1",
-    options: ["option1", "option2", "option3", "option4", "option5"],
-    selected: "option1",
-    color: "Cyan",
-  },
-];
-
 const Parts: React.FC<Props> = (props: Props) => {
-  const [categories, setCategories] = useState<Category[]>(defaultCategories);
-
   const getUniqueId = (): string => {
     return new Date().getTime().toString();
   };
@@ -33,26 +25,26 @@ const Parts: React.FC<Props> = (props: Props) => {
       selected: "",
       color: "White",
     };
-    setCategories([...categories, newDefault]);
+    props.setCategories([...props.categories, newDefault]);
   };
 
   const removeCategory = (id: string) => {
-    const newCategories = [...categories];
-    setCategories(newCategories.filter((category) => category.id !== id));
+    const newCategories = [...props.categories];
+    props.setCategories(newCategories.filter((category) => category.id !== id));
   };
 
   const updateCategoriesValue = (id: string, selected: string) => {
-    return categories.map((category) =>
+    return props.categories.map((category) =>
       category.id === id ? { ...category, selected: selected } : category
     );
   };
 
   const getCategories = () => {
-    return categories.map((category) => (
+    return props.categories.map((category) => (
       <PartsSelect
         category={category}
         onChangePart={(id: string, selected: string) =>
-          setCategories(updateCategoriesValue(id, selected))
+          props.setCategories(updateCategoriesValue(id, selected))
         }
         onUpload={(id: string) => console.log(id)}
         onDeleteOption={(id: string) => console.log(id)}
