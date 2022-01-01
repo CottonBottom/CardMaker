@@ -20,6 +20,11 @@
   color: $textLight;
   font-weight: bold;
   font-size: $textSizeL;
+  cursor: pointer;
+}
+
+.tab-button--selected {
+  color: $foreground;
 }
 
 .tab-content-container {
