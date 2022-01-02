@@ -3,29 +3,21 @@ import Parts, { Category } from "./Parts";
 import Import from "./Import";
 import axios from "axios";
 
-type Props = {};
-
-const defaultCategories = [
-  {
-    id: "1",
-    options: ["option1", "option2", "option3", "option4", "option5"],
-    selected: "option1",
-    color: "Cyan",
-  },
-];
+type Props = {
+  categories: Category[];
+  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+};
 
 const Settings: React.FC<Props> = (props: Props) => {
   const [activeTab, setActiveTab] = useState<"parts" | "data" | "rules">(
     "parts"
   );
-  const [categories, setCategories] = useState<Category[]>(defaultCategories);
   const [showImport, setShowImport] = useState<boolean>(false);
   const [showImportWarning, setShowImportWarning] = useState<boolean>(false);
   const [editingCategoryId, setEditingCategoryId] = useState<string>("");
 
   const importCategory = (id: string) => {
-    console.log("The category Id", id);
-    setEditingCategoryId(editingCategoryId);
+    setEditingCategoryId(id);
     setShowImport(true);
   };
 
@@ -43,30 +35,57 @@ const Settings: React.FC<Props> = (props: Props) => {
       return;
     }
 
-    console.log("THE ALBUM HASH", albumHash);
-
-    const clientId = "no-bananas-for-monkeys"
-    //TODO: Look how to hide id, env vars?
-
     /** API Call */
+    const clientId = "034457745cac811";
+    //TODO: Hide when Backend is made
     const headers = {
-      'Authorization': `Client-ID ${clientId}`,
+      Authorization: `Client-ID ${clientId}`,
     };
     // Solved issue: https://stackoverflow.com/questions/43912795/imgur-image-not-showing-on-localhost
     // working on: http://imgurtest.localhost:3000/
-
     const getAlbum = `https://api.imgur.com/3/album/${albumHash}`;
-
     axios
       .get(getAlbum, { headers })
       .then((response) => {
-        console.log("The response", response.data.data);
+        const name = response.data.data.title;
+        const options = [
+          ...response.data.data.images.map(
+            (image: { description: string; link: string }) => {
+              return {
+                name: image.description,
+                url: image.link,
+              };
+            }
+          ),
+          //Empty Option
+          { name: "Empty", url: "" },
+        ];
+        const selected = options[0].name;
+
+        const selectedCategory = props.categories.filter(
+          (category) => category.id !== editingCategoryId
+        )[0];
+
+        const updatedCategory: Category = {
+          ...selectedCategory,
+          name,
+          options,
+          selected,
+        };
+
+        const newCategories = props.categories.map((category) => {
+          return category.id === editingCategoryId ? updatedCategory : category;
+        });
+
+        props.setCategories(newCategories);
+        toggledShowImport(false);
         setShowImportWarning(false);
       })
       .catch((error) => {
         setShowImportWarning(true);
         console.error("Import failed:", error);
       });
+    /** */
   };
 
   const toggledShowImport = (toggled: boolean) => {
@@ -82,8 +101,8 @@ const Settings: React.FC<Props> = (props: Props) => {
       case "parts":
         return (
           <Parts
-            categories={categories}
-            setCategories={setCategories}
+            categories={props.categories}
+            setCategories={props.setCategories}
             importCategory={importCategory}
           />
         );

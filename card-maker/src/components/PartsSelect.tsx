@@ -5,7 +5,6 @@ type Props = {
   category: Category;
   onChangePart: (id: string, selected: string) => void;
   onImportCategory: (id: string) => void;
-  onDeleteOption: (id: string) => void;
   onRemoveCategory: (id: string) => void;
 };
 
@@ -23,14 +22,14 @@ const PartsSelect: React.FC<Props> = (props: Props) => {
     }
 
     return props.category.options.map((option) => (
-      <option value={option}>{option}</option>
+      <option value={option.name}>{option.name}</option>
     ));
   };
 
   return (
     <div className="input-row">
       <label htmlFor="inputselectexample" className="input-label">
-        Select Changable Label
+        {props.category.name}
       </label>
       <div className="input-row__select">
         <select
@@ -49,12 +48,6 @@ const PartsSelect: React.FC<Props> = (props: Props) => {
           onClick={() => props.onImportCategory(props.category.id)}
         >
           <span className="material-icons">file_upload</span>
-        </button>
-        <button
-          className="button button--icon"
-          onClick={() => props.onDeleteOption(props.category.id)}
-        >
-          <span className="material-icons">delete</span>
         </button>
         <button
           className="button button--icon"

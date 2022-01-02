@@ -1,8 +1,32 @@
 import React from "react";
+import { Category } from "./Parts";
 
-type Props = {};
+type Props = {
+  categories: Category[];
+};
 
 const Card: React.FC<Props> = (props: Props) => {
+  const getSelectedOption = (category: Category) => {
+    return category.options.filter(
+      (option) => category.selected === option.name
+    )[0];
+  };
+
+  const makeLayers = (categories: Category[]) => {
+    return categories.map((category, index) => {
+      const selectedOption = getSelectedOption(category);
+      console.log("THE selected option", selectedOption);
+      return (
+        <img
+          className="character-card__image-layer"
+          style={{ zIndex: index + 1 }}
+          src={selectedOption.url}
+          alt={selectedOption.name}
+        />
+      );
+    });
+  };
+
   return (
     <div className="card card--character-card">
       <div className="character-card-container">
@@ -14,6 +38,7 @@ const Card: React.FC<Props> = (props: Props) => {
             <span className="material-icons">pets</span>
           </div>
           <div className="character-card__image-container">
+            {makeLayers(props.categories)}
             <div className="character-card__name">
               Card Name Very Long To Test
             </div>

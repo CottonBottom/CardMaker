@@ -8,8 +8,12 @@ type Props = {
 };
 
 export type Category = {
+  name: string;
   id: string;
-  options: string[];
+  options: {
+    name: string;
+    url: string;
+  }[];
   selected: string;
   color: string;
 };
@@ -25,10 +29,16 @@ const Parts: React.FC<Props> = (props: Props) => {
 
   const addCategory = () => {
     const newDefault: Category = {
+      name: "New Category",
       id: getUniqueId(),
-      options: [],
-      selected: "",
-      color: "White",
+      options: [
+        {
+          name: "Empty",
+          url: "",
+        },
+      ],
+      selected: "Empty",
+      color: "Cyan",
     };
     props.setCategories([...props.categories, newDefault]);
   };
@@ -40,7 +50,7 @@ const Parts: React.FC<Props> = (props: Props) => {
 
   const updateCategoriesValue = (id: string, selected: string) => {
     return props.categories.map((category) =>
-      category.id === id ? { ...category, selected: selected } : category
+      category.id === id ? { ...category, selected } : category
     );
   };
 
@@ -52,7 +62,6 @@ const Parts: React.FC<Props> = (props: Props) => {
           props.setCategories(updateCategoriesValue(id, selected))
         }
         onImportCategory={(id: string) => importCategory(id)}
-        onDeleteOption={(id: string) => console.log(id)}
         onRemoveCategory={(id: string) => removeCategory(id)}
       />
     ));
