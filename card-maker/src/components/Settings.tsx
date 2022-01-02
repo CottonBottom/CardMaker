@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Parts, { Category } from "./Parts";
 import Import from "./Import";
+import axios from "axios";
 
 type Props = {};
 
@@ -36,10 +37,36 @@ const Settings: React.FC<Props> = (props: Props) => {
       return;
     }
 
-    /** API Call */
+    const albumHash = url.split("/").at(-1);
+    if (!albumHash) {
+      setShowImportWarning(true);
+      return;
+    }
 
-    console.log("The valid url", url);
-    setShowImportWarning(false);
+    console.log("THE ALBUM HASH", albumHash);
+
+    const clientId = "no-bananas-for-monkeys"
+    //TODO: Look how to hide id, env vars?
+
+    /** API Call */
+    const headers = {
+      'Authorization': `Client-ID ${clientId}`,
+    };
+    // Solved issue: https://stackoverflow.com/questions/43912795/imgur-image-not-showing-on-localhost
+    // working on: http://imgurtest.localhost:3000/
+
+    const getAlbum = `https://api.imgur.com/3/album/${albumHash}`;
+
+    axios
+      .get(getAlbum, { headers })
+      .then((response) => {
+        console.log("The response", response.data.data);
+        setShowImportWarning(false);
+      })
+      .catch((error) => {
+        setShowImportWarning(true);
+        console.error("Import failed:", error);
+      });
   };
 
   const toggledShowImport = (toggled: boolean) => {
