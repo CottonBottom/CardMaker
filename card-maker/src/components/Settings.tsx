@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Parts, { Category } from "./Parts";
+import Import from "./Import";
 
 type Props = {};
 
@@ -17,11 +18,48 @@ const Settings: React.FC<Props> = (props: Props) => {
     "parts"
   );
   const [categories, setCategories] = useState<Category[]>(defaultCategories);
+  const [showImport, setShowImport] = useState<boolean>(false);
+  const [showImportWarning, setShowImportWarning] = useState<boolean>(false);
+  const [editingCategoryId, setEditingCategoryId] = useState<string>("");
+
+  const importCategory = (id: string) => {
+    console.log("The category Id", id);
+    setEditingCategoryId(editingCategoryId);
+    setShowImport(true);
+  };
+
+  const importAlbum = (url: string) => {
+    /** Validation */
+    var validUrl = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
+    if (!validUrl.test(url)) {
+      setShowImportWarning(true);
+      return;
+    }
+
+    /** API Call */
+
+    console.log("The valid url", url);
+    setShowImportWarning(false);
+  };
+
+  const toggledShowImport = (toggled: boolean) => {
+    // Reseting category Id on hiding showImport
+    if (!toggled) {
+      setEditingCategoryId("");
+    }
+    setShowImport(toggled);
+  };
 
   const tabContent = (tab: "parts" | "data" | "rules") => {
     switch (tab) {
       case "parts":
-        return <Parts categories={categories} setCategories={setCategories} />;
+        return (
+          <Parts
+            categories={categories}
+            setCategories={setCategories}
+            importCategory={importCategory}
+          />
+        );
       case "data":
         return (
           <div className="tab-content">
@@ -56,6 +94,12 @@ const Settings: React.FC<Props> = (props: Props) => {
 
   return (
     <div className="card card--settings">
+      <Import
+        isOpen={showImport}
+        importWarning={showImportWarning}
+        onToggle={(toggled) => toggledShowImport(toggled)}
+        onImportAlbum={importAlbum}
+      />
       <div className="tab-container">
         <div className="tabs">
           <button

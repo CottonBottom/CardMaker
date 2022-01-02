@@ -4,6 +4,7 @@ import PartsSelect from "./PartsSelect";
 type Props = {
   categories: Category[];
   setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+  importCategory: (id: string) => void;
 };
 
 export type Category = {
@@ -16,6 +17,10 @@ export type Category = {
 const Parts: React.FC<Props> = (props: Props) => {
   const getUniqueId = (): string => {
     return new Date().getTime().toString();
+  };
+
+  const importCategory = (id: string) => {
+    props.importCategory(id);
   };
 
   const addCategory = () => {
@@ -46,7 +51,7 @@ const Parts: React.FC<Props> = (props: Props) => {
         onChangePart={(id: string, selected: string) =>
           props.setCategories(updateCategoriesValue(id, selected))
         }
-        onUpload={(id: string) => console.log(id)}
+        onImportCategory={(id: string) => importCategory(id)}
         onDeleteOption={(id: string) => console.log(id)}
         onRemoveCategory={(id: string) => removeCategory(id)}
       />

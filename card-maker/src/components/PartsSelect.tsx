@@ -4,7 +4,7 @@ import { Category } from "./Parts";
 type Props = {
   category: Category;
   onChangePart: (id: string, selected: string) => void;
-  onUpload: (id: string) => void;
+  onImportCategory: (id: string) => void;
   onDeleteOption: (id: string) => void;
   onRemoveCategory: (id: string) => void;
 };
@@ -46,7 +46,7 @@ const PartsSelect: React.FC<Props> = (props: Props) => {
         </select>
         <button
           className="button button--icon"
-          onClick={() => props.onUpload(props.category.id)}
+          onClick={() => props.onImportCategory(props.category.id)}
         >
           <span className="material-icons">file_upload</span>
         </button>
