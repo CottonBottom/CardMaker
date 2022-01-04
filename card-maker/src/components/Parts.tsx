@@ -70,7 +70,7 @@ const Parts: React.FC<Props> = (props: Props) => {
   return (
     <div className="tab-content">
       {getCategories()}
-      <div className="input-row">
+      <div className="input-row input-row--add-button">
         <button className="button button--icon" onClick={() => addCategory()}>
           <span className="material-icons">add_circle</span>
         </button>

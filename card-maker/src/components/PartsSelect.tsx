@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Category } from "./Parts";
+import { HexColorPicker } from "react-colorful";
 
 type Props = {
   category: Category;
@@ -9,6 +10,9 @@ type Props = {
 };
 
 const PartsSelect: React.FC<Props> = (props: Props) => {
+  const [color, setColor] = useState<string>("#ffffff");
+  const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
+
   const getOptions = () => {
     if (props.category.options.length === 0) {
       return [
@@ -56,7 +60,22 @@ const PartsSelect: React.FC<Props> = (props: Props) => {
           <span className="material-icons">remove_circle</span>
         </button>
       </div>
-      <div className="input__color-picker"></div>
+      <button
+        className="input__color-picker"
+        style={{ backgroundColor: color }}
+        onClick={() => setShowColorPicker(true)}
+      ></button>
+      <div className="color-picker-component">
+        {showColorPicker && (
+          <>
+            <div
+              className="color-picker-component__cover"
+              onClick={() => setShowColorPicker(false)}
+            ></div>
+            <HexColorPicker color={color} onChange={setColor} />
+          </>
+        )}
+      </div>
     </div>
   );
 };
