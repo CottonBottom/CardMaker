@@ -29,6 +29,7 @@ const Card: React.FC<Props> = (props: Props) => {
               zIndex: index + 1,
               backgroundColor: category.color,
               mask: `url(${selectedOption.url}) 0% 0% / 100% 100%`,
+              WebkitMask: `url(${selectedOption.url}) 0% 0% / 100% 100%`,
             }}
           />
         </>
