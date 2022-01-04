@@ -15,13 +15,12 @@ const Card: React.FC<Props> = (props: Props) => {
   const makeLayers = (categories: Category[]) => {
     return categories.map((category, index) => {
       const selectedOption = getSelectedOption(category);
-      console.log("THE selected option", selectedOption);
       return (
         <img
           className="character-card__image-layer"
           style={{ zIndex: index + 1 }}
           src={selectedOption.url}
-          alt={selectedOption.name}
+          alt={selectedOption.url ? selectedOption.name : ""}
         />
       );
     });

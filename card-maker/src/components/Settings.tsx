@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Parts, { Category } from "./Parts";
 import Import from "./Import";
 import axios from "axios";
@@ -14,7 +14,12 @@ const Settings: React.FC<Props> = (props: Props) => {
   );
   const [showImport, setShowImport] = useState<boolean>(false);
   const [showImportWarning, setShowImportWarning] = useState<boolean>(false);
-  const [editingCategoryId, setEditingCategoryId] = useState<string>("");
+  const [editingCategoryId, setEditingCategoryId] = useState<string>("1");
+
+  useEffect(() => {
+    //TODO: Delete Test Album
+    importAlbum("https://imgur.com/a/EBVl40R");
+  }, []);
 
   const importCategory = (id: string) => {
     setEditingCategoryId(id);
@@ -62,9 +67,13 @@ const Settings: React.FC<Props> = (props: Props) => {
         ];
         const selected = options[0].name;
 
+        console.log("THE EDITING CATEGORYID", editingCategoryId);
+
         const selectedCategory = props.categories.filter(
-          (category) => category.id !== editingCategoryId
+          (category) => category.id === editingCategoryId
         )[0];
+
+        console.log("THE selectedCategory", selectedCategory);
 
         const updatedCategory: Category = {
           ...selectedCategory,
@@ -72,6 +81,8 @@ const Settings: React.FC<Props> = (props: Props) => {
           options,
           selected,
         };
+
+        console.log("THE updatedCategory", updatedCategory);
 
         const newCategories = props.categories.map((category) => {
           return category.id === editingCategoryId ? updatedCategory : category;
