@@ -38,7 +38,7 @@ const Parts: React.FC<Props> = (props: Props) => {
         },
       ],
       selected: "Empty",
-      color: "Cyan",
+      color: "#ffffff",
     };
     props.setCategories([...props.categories, newDefault]);
   };
@@ -54,6 +54,12 @@ const Parts: React.FC<Props> = (props: Props) => {
     );
   };
 
+  const updateCategoriesColor = (id: string, color: string) => {
+    return props.categories.map((category) =>
+      category.id === id ? { ...category, color } : category
+    );
+  };
+
   const getCategories = () => {
     return props.categories.map((category) => (
       <PartsSelect
@@ -63,6 +69,9 @@ const Parts: React.FC<Props> = (props: Props) => {
         }
         onImportCategory={(id: string) => importCategory(id)}
         onRemoveCategory={(id: string) => removeCategory(id)}
+        onChangeColor={(id: string, color: string) =>
+          props.setCategories(updateCategoriesColor(id, color))
+        }
       />
     ));
   };

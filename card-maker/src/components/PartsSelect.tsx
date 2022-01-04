@@ -7,10 +7,10 @@ type Props = {
   onChangePart: (id: string, selected: string) => void;
   onImportCategory: (id: string) => void;
   onRemoveCategory: (id: string) => void;
+  onChangeColor: (id: string, color: string) => void;
 };
 
 const PartsSelect: React.FC<Props> = (props: Props) => {
-  const [color, setColor] = useState<string>("#ffffff");
   const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
 
   const getOptions = () => {
@@ -62,7 +62,7 @@ const PartsSelect: React.FC<Props> = (props: Props) => {
       </div>
       <button
         className="input__color-picker"
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: props.category.color }}
         onClick={() => setShowColorPicker(true)}
       ></button>
       <div className="color-picker-component">
@@ -72,7 +72,12 @@ const PartsSelect: React.FC<Props> = (props: Props) => {
               className="color-picker-component__cover"
               onClick={() => setShowColorPicker(false)}
             ></div>
-            <HexColorPicker color={color} onChange={setColor} />
+            <HexColorPicker
+              color={props.category.color}
+              onChange={(color) =>
+                props.onChangeColor(props.category.id, color)
+              }
+            />
           </>
         )}
       </div>

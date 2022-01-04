@@ -16,12 +16,22 @@ const Card: React.FC<Props> = (props: Props) => {
     return categories.map((category, index) => {
       const selectedOption = getSelectedOption(category);
       return (
-        <img
-          className="character-card__image-layer"
-          style={{ zIndex: index + 1 }}
-          src={selectedOption.url}
-          alt={selectedOption.url ? selectedOption.name : ""}
-        />
+        <>
+          <img
+            className="character-card__image-layer"
+            style={{ zIndex: index + 1 }}
+            src={selectedOption.url}
+            alt={selectedOption.url ? selectedOption.name : ""}
+          />
+          <div
+            className="character-card__color-layer"
+            style={{
+              zIndex: index + 1,
+              backgroundColor: category.color,
+              mask: `url(${selectedOption.url}) 0% 0% / 100% 100%`,
+            }}
+          />
+        </>
       );
     });
   };

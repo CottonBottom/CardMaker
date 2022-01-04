@@ -34,7 +34,7 @@
   width: 40px;
   background: black;
   position: absolute;
-  z-index: 1;
+  z-index: 1000;
   top: 0;
   right: 0;
   border-radius: 0px 10px 0px 5px;
@@ -78,12 +78,21 @@
   left: 0px;
 }
 
+.character-card__color-layer {
+  width: 230px;
+  height: 264px;
+  position: absolute;
+  left: 0px;
+  mix-blend-mode: multiply;
+}
+
 .character-card__name {
   color: black;
   position: absolute;
   left: 5px;
   bottom: 5px;
   font-size: 14px;
+  z-index: 1000;
 }
 
 .character-card__legend {
