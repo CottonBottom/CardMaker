@@ -18,7 +18,7 @@ const Settings: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     //TODO: Delete Test Album
-    importAlbum("https://imgur.com/a/EBVl40R");
+    importAlbum("https://imgur.com/a/Eys8GOs");
   }, []);
 
   const importCategory = (id: string) => {

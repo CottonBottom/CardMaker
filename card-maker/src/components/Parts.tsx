@@ -38,7 +38,7 @@ const Parts: React.FC<Props> = (props: Props) => {
         },
       ],
       selected: "Empty",
-      color: "#ffffff",
+      color: "#808080",
     };
     props.setCategories([...props.categories, newDefault]);
   };

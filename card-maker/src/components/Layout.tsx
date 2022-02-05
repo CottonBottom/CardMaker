@@ -16,7 +16,7 @@ const defaultCategories = [
       },
     ],
     selected: "Empty",
-    color: "#ffffff",
+    color: "#808080",
   },
 ];
 

@@ -80,10 +80,10 @@
 
 .character-card__color-layer {
   width: 230px;
-  height: 264px;
+  height: 230px;
   position: absolute;
   left: 0px;
-  mix-blend-mode: multiply;
+  mix-blend-mode: hard-light;
 }
 
 .character-card__name {
