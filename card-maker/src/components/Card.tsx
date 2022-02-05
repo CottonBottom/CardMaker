@@ -3,6 +3,8 @@ import { Category } from "./Parts";
 
 type Props = {
   categories: Category[];
+  name: string;
+  description: string;
 };
 
 const Card: React.FC<Props> = (props: Props) => {
@@ -49,16 +51,16 @@ const Card: React.FC<Props> = (props: Props) => {
           </div>
           <div className="character-card__image-container">
             {makeLayers(props.categories)}
-            <div className="character-card__name">
-              Card Name Very Long To Test
+            <div className="character-card__name-area">
+              <div className="character-card__name-text">
+                {props.name || "Name"}
+              </div>
             </div>
           </div>
-          <div className="character-card__legend">
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam,
-            </span>
+          <div className="character-card__legend-area">
+            <div className="character-card__legend-text">
+              {props.description || "Description"}
+            </div>
           </div>
           <div className="character-card__abilities">
             <div className="character-card__skills">

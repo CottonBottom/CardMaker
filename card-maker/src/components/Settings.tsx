@@ -5,7 +5,11 @@ import axios from "axios";
 
 type Props = {
   categories: Category[];
+  name: string;
+  description: string;
   setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Settings: React.FC<Props> = (props: Props) => {
@@ -15,6 +19,8 @@ const Settings: React.FC<Props> = (props: Props) => {
   const [showImport, setShowImport] = useState<boolean>(false);
   const [showImportWarning, setShowImportWarning] = useState<boolean>(false);
   const [editingCategoryId, setEditingCategoryId] = useState<string>("1");
+
+  const maxDescriptionLength = 175;
 
   useEffect(() => {
     //TODO: Delete Test Album
@@ -122,19 +128,36 @@ const Settings: React.FC<Props> = (props: Props) => {
           <div className="tab-content">
             <div className="input-row">
               <label htmlFor="inputexample" className="input-label">
-                Input Changable Label
+                Name
               </label>
-              <input className="input" id="inputexample" type="text" />
+              <input
+                className="input"
+                id="inputexample"
+                type="text"
+                value={props.name}
+                onChange={(e) => props.setName(e.target.value)}
+                maxLength={40}
+              />
             </div>
             <div className="input-row">
               <label htmlFor="inputareaexample" className="input-label">
-                Input Area Changable Label
+                Description
               </label>
               <textarea
                 className="input input--area"
                 id="inputareaexample"
                 rows={3}
+                value={props.description}
+                onChange={(e) => props.setDescription(e.target.value)}
+                maxLength={maxDescriptionLength}
               />
+              {maxDescriptionLength - props.description.length <= 30 && (
+                <span className="input__alert">
+                  {`Remaining Characters: ${
+                    maxDescriptionLength - props.description.length
+                  }`}
+                </span>
+              )}
             </div>
           </div>
         );

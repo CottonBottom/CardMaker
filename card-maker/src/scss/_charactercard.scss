@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 240px;
-  height: 336px;
   position: relative;
 }
 
@@ -12,10 +10,13 @@
   align-items: center;
   flex-direction: column;
   background: black;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 30px;
-  padding: 5px;
-  transform: scale(2.09);
+  padding: 10px;
+  width: 480px;
+  //width 500px
+  height: 680px;
+  //height 700px
 
   //Disable text selection
   -webkit-touch-callout: none; /* iOS Safari */
@@ -30,18 +31,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 22px;
-  width: 40px;
+  // height: 40px;
   background: black;
   position: absolute;
   z-index: 1000;
   top: 0;
   right: 0;
-  border-radius: 0px 10px 0px 5px;
-
+  padding: 10px 10px;
+  border-radius: 0px 20px 0px 10px;
   .material-icons {
     color: white;
-    font-size: 14px;
+    font-size: 24px;
   }
 }
 
@@ -49,15 +49,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 14px;
-  height: 14px;
-  font-size: 10px;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
   color: black;
   background: white;
   border-radius: 50%;
-  margin-right: 3px;
+  margin-right: 8px;
   span {
-    margin-bottom: 1px;
+    margin-bottom: 2px;
   }
 }
 
@@ -66,14 +66,14 @@
   align-items: center;
   justify-self: center;
   background: silver;
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
   width: 100%;
-  height: 264px;
+  height: 550px;
   position: relative;
 }
 
 .character-card__image-layer {
-  width: 230px;
+  width: 480px;
   position: absolute;
   left: 0px;
 }
@@ -86,23 +86,39 @@
   mix-blend-mode: hard-light;
 }
 
-.character-card__name {
+.character-card__name-area {
   color: black;
   position: absolute;
-  left: 5px;
-  bottom: 5px;
-  font-size: 14px;
+  left: 0px;
+  bottom: 0px;
+  width: 460px;
+  font-size: 24px;
   z-index: 1000;
+  white-space: nowrap;
 }
 
-.character-card__legend {
+.character-card__name-text {
+  padding: 10px;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+.character-card__legend-area {
+  display: flex;
+  width: 100%;
+  height: 83px;
   background: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.character-card__legend-text {
+  padding: 10px;
   color: black;
-  height: 32px;
-  padding: 5px;
-  font-size: 9px;
-  line-height: 10.5px;
-  margin-bottom: 2px;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .character-card__abilities {
@@ -116,23 +132,24 @@
   width: 100%;
   display: flex;
   align-items: center;
-  font-size: 7px;
+  justify-content: space-between;
+  margin-right: 28px;
+  font-size: 12px;
   color: white;
   font-weight: bold;
-
-  span:not(:last-child) {
-    margin-right: 7px;
-  }
 }
 
 .character-card__stats {
   color: white;
-  font-size: 18px;
+  font-size: 32px;
   font-weight: bold;
 }
 
 @media (max-width: 500px) {
-  .character-card {
-    scale: 1.82;
+  .character-card-container {
+    transform: scale(0.7);
+  }
+  .character-card__image-layer {
+    width: 480px;
   }
 }

@@ -22,11 +22,20 @@ const defaultCategories = [
 
 const Layout: React.FC<Props> = (props: Props) => {
   const [categories, setCategories] = useState<Category[]>(defaultCategories);
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   return (
     <div className="layout">
-      <Card categories={categories} />
-      <Settings categories={categories} setCategories={setCategories} />
+      <Card categories={categories} name={name} description={description} />
+      <Settings
+        categories={categories}
+        name={name}
+        description={description}
+        setCategories={setCategories}
+        setName={setName}
+        setDescription={setDescription}
+      />
     </div>
   );
 };

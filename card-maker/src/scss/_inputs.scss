@@ -39,6 +39,11 @@
   outline: $selectable solid 3px;
 }
 
+.input__alert {
+  margin-top: 8px;
+  color: $warning;
+}
+
 .input-row__select {
   display: flex;
   align-items: center;
