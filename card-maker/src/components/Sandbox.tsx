@@ -41,21 +41,26 @@ const Sandbox: React.FC<Props> = (props: Props) => {
       return (
         <>
           <img
-            className="character-card__image-layer"
+            className="character-card__image-layer character-card__image-layer--smack"
             style={{ zIndex: index + 1 }}
             src={selectedOption.url}
             alt={selectedOption.url ? selectedOption.name : ""}
             id={`image-${index}`}
           />
           <div
-            className="character-card__color-layer"
+            className="character-card__color-layer character-card__color-layer--smack"
             style={{
               zIndex: index + 1,
               backgroundColor: category.color,
               mask: `url(${selectedOption.url}) 0% 0% / 100% 100%`,
               WebkitMask: `url(${selectedOption.url}) 0% 0% / 100% 100%`,
             }}
-          />
+          >
+            <div className="ripple"></div>
+            <div className="ripple-two"></div>
+            <div className="ripple-three"></div>
+            <div className="blush"></div>
+          </div>
         </>
       );
     });
@@ -67,7 +72,7 @@ const Sandbox: React.FC<Props> = (props: Props) => {
     //code before the pause
     setTimeout(function () {
       setSmack("");
-    }, 300);
+    }, 2000);
   };
 
   //   var c=document.getElementById("myCanvas");
@@ -97,6 +102,10 @@ const Sandbox: React.FC<Props> = (props: Props) => {
           </div>
           <div className="character-card__image-container">
             {/* <canvas id="canvas" width="400" height="400"></canvas> */}
+            <div className="animating-background"></div>
+            <div className={`animating-class ${smack}`}>
+              {makeLayers(props.categories)}
+            </div>
             <div className={`animating-class ${smack}`}>
               {makeLayers(props.categories)}
             </div>
