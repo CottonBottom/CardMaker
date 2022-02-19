@@ -27,23 +27,47 @@ const defaultCategories = [
     options: [
       {
         name: "Base",
-        url: "/images/1.png",
+        url: "/images/3e.png",
       },
     ],
     selected: "Base",
-    color: "#808080",
+    color: "#DF746D",
   },
   {
-    name: "Cloth",
+    name: "Right",
     id: "2",
     options: [
       {
+        name: "Right",
+        url: "/images/2e.png",
+      },
+    ],
+    selected: "Right",
+    color: "#DF746D",
+  },
+  {
+    name: "Left",
+    id: "3",
+    options: [
+      {
+        name: "Left",
+        url: "/images/1e.png",
+      },
+    ],
+    selected: "Left",
+    color: "#DF746D",
+  },
+  {
+    name: "Cloth",
+    id: "4",
+    options: [
+      {
         name: "Cloth",
-        url: "/images/2.png",
+        url: "/images/ee.png",
       },
     ],
     selected: "Cloth",
-    color: "#808080",
+    color: "#F770A6",
   },
 ];
 

@@ -35,31 +35,89 @@ const Sandbox: React.FC<Props> = (props: Props) => {
     )[0];
   };
 
-  const makeLayers = (categories: Category[]) => {
+  const makeLayers = (
+    categories: Category[],
+    part?: "bottom" | "left" | "right" | "top"
+  ) => {
     return categories.map((category, index) => {
       const selectedOption = getSelectedOption(category);
+
+      let size = "1";
+
+      //M
+      let overallSize = "1, 1";
+      let cheekSize = "1, 1";
+
+      // //S
+      // cheekSize = "0.9, 0.9";
+      // overallSize = "0.9, 1";
+
+      //L
+      // cheekSize = "1.1, 1.0";
+      // overallSize = "1.1, 1";
+
+      /** Size Rulings: */
+      // clothing && base solo pueden cambiar en y
+      // CheekSize comienza en el maximo posible de wideness
+
+      let ripplePosition = "";
+      let blushPosition = "";
+      switch (part) {
+        case "bottom":
+          size = overallSize;
+          break;
+        case "left":
+          ripplePosition = "ripple--left";
+          blushPosition = "blush--left";
+          size = cheekSize;
+          break;
+        case "right":
+          ripplePosition = "ripple--right";
+          blushPosition = "blush--right";
+          size = cheekSize;
+          break;
+        case "top":
+          size = overallSize;
+          break;
+        default:
+          break;
+      }
+
       return (
         <>
           <img
-            className="character-card__image-layer character-card__image-layer--smack"
-            style={{ zIndex: index + 1 }}
+            className={`character-card__image-layer character-card__image-layer--smack ${
+              part === "bottom" ? "" : "displacement"
+            }`}
+            style={{
+              zIndex: index + 1,
+              opacity: part === "top" ? 0.95 : 1,
+              transform: `scale(${size})`,
+            }}
             src={selectedOption.url}
             alt={selectedOption.url ? selectedOption.name : ""}
             id={`image-${index}`}
           />
           <div
-            className="character-card__color-layer character-card__color-layer--smack"
+            className={`character-card__color-layer character-card__color-layer--smack ${
+              part === "bottom" ? "" : "displacement"
+            }`}
             style={{
               zIndex: index + 1,
               backgroundColor: category.color,
               mask: `url(${selectedOption.url}) 0% 0% / 100% 100%`,
               WebkitMask: `url(${selectedOption.url}) 0% 0% / 100% 100%`,
+              transform: `scale(${size})`,
             }}
           >
-            <div className="ripple"></div>
-            <div className="ripple-two"></div>
-            <div className="ripple-three"></div>
-            <div className="blush"></div>
+            {ripplePosition && (
+              <>
+                <div className={`ripple ${ripplePosition}`}></div>
+                <div className={`ripple-two ${ripplePosition}`}></div>
+                <div className={`ripple-three ${ripplePosition}`}></div>
+                <div className={`blush ${blushPosition}`}></div>
+              </>
+            )}
           </div>
         </>
       );
@@ -104,10 +162,10 @@ const Sandbox: React.FC<Props> = (props: Props) => {
             {/* <canvas id="canvas" width="400" height="400"></canvas> */}
             <div className="animating-background"></div>
             <div className={`animating-class ${smack}`}>
-              {makeLayers(props.categories)}
-            </div>
-            <div className={`animating-class ${smack}`}>
-              {makeLayers(props.categories)}
+              {makeLayers([props.categories[0]], "bottom")}
+              {makeLayers([props.categories[1]], "right")}
+              {makeLayers([props.categories[2]], "left")}
+              {makeLayers([props.categories[3]], "top")}
             </div>
           </div>
           <div className="character-card__legend-area">
